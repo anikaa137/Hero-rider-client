@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerr } from "../../action/auth";
 
-const Register = () => {
+const LearnerRegistr = () => {
   const history = useHistory();
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
@@ -19,6 +19,7 @@ const Register = () => {
         address: data.address,
         age: data.age,
         carModel: data.carModel,
+        phone: data.phone,
         careName: data.careName,
         drivingLicence: data.drivingLicence,
         email: data.email,
@@ -28,7 +29,7 @@ const Register = () => {
         password: data.password,
         profilePicture: data.profilePicture,
         vehiceType: data.vehiceType,
-        role: "rider",
+        role: "learner",
       });
 
       toast.success("register success");
@@ -102,14 +103,14 @@ const Register = () => {
               </p>
             </div>
             <div className="mb-3">
-              <label className="form-label">Address</label>
+              <label className="form-label">Phone</label>
               <input
-                {...register("address", { required: true })}
-                type="text"
+                {...register("phone", { required: true })}
+                type="number"
                 className="form-control"
               />
               <p style={{ color: "red" }}>
-                {errors.address && <span>This field is required</span>}
+                {errors.phone && <span>This field is required</span>}
               </p>
             </div>
             <div className="mb-3">
@@ -199,8 +200,8 @@ const Register = () => {
             {/* <input disabled={!isValid} type="submit" /> */}
           </form>
 
-          <div>
-            <h2>OR</h2>
+          <div className="mb-5">
+            <h6 className="mt-4">OR</h6>
             <Link to="/login">
               <p> Already Have an Account ?</p>
               <button>Login</button>{" "}
@@ -211,5 +212,4 @@ const Register = () => {
     </div>
   );
 };
-
-export default Register;
+export default LearnerRegistr;

@@ -24,12 +24,11 @@ const Login = () => {
         role: data.role,
       });
       setLoggedInUser(res.data.user);
-      if (res.data.user.role === "user") {
-        history.replace(from);
-        e.target.reset();
+      if (res.data.user.role === "learner") {
+        history.push("/packages");
       }
       if (res.data.user.role === "rider") {
-        history.push("/Seller");
+        history.push("/profile");
       }
       if (res.data.user.role === "admin") {
         history.push("/admin");
