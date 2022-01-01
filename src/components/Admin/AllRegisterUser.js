@@ -13,7 +13,9 @@ const AllRegisterUser = () => {
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/all-register-user?page=${pageNumber}`)
+    fetch(
+      `https://hidden-retreat-30989.herokuapp.com/api/all-register-user?page=${pageNumber}`
+    )
       .then((res) => res.json())
       .then(({ totalPages, all, total }) => {
         setAllUser(all);
