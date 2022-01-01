@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AllRegisterUser from "./components/Admin/AllRegisterUser";
 import LearnerRegistr from "./components/Auth/LearnerRegistr";
 import Login from "./components/Auth/Login";
+import PrivateRoute from "./components/Auth/PrivateRoute";
 import Register from "./components/Auth/RiderRegister";
 import Homepage from "./components/HomeComponent/Homepage";
 import TopNav from "./components/HomeComponent/TopNav";
@@ -12,6 +13,7 @@ import WelcolmePage from "./components/HomeComponent/WelcolmePage";
 import Packages from "./components/Packages";
 import Payment from "./components/Payment/Payment";
 import PaymentSuccess from "./components/Payment/PaymentSuccess";
+import Profile from "./components/Profile";
 
 export const AppContext = createContext();
 
@@ -45,12 +47,15 @@ function App() {
           <Route path="/packages">
             <Packages />
           </Route>
-          <Route path="/payment">
+          <PrivateRoute path="/payment">
             <Payment />
-          </Route>
+          </PrivateRoute>
           <Route path="/Success">
             <PaymentSuccess />
           </Route>
+          <PrivateRoute path="/profile">
+            <Profile />
+          </PrivateRoute>
         </Switch>
       </Router>
     </AppContext.Provider>

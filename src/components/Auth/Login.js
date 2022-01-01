@@ -7,8 +7,8 @@ import { AppContext } from "../../App";
 
 const Login = () => {
   const history = useHistory();
-  const { loggedInUser, setLoggedInUser } = useContext(AppContext);
-  console.log(loggedInUser, "app");
+  const { setLoggedInUser } = useContext(AppContext);
+
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
   });
@@ -23,7 +23,7 @@ const Login = () => {
         password: data.password,
         role: data.role,
       });
-      setLoggedInUser(res.data.user);
+      setLoggedInUser(res.data);
       if (res.data.user.role === "learner") {
         history.push("/packages");
       }
@@ -31,11 +31,12 @@ const Login = () => {
         history.push("/profile");
       }
       if (res.data.user.role === "admin") {
-        history.push("/admin");
+        history.push("/dashboard");
       }
 
       // save user and token to local-storage
-      window.localStorage.setItem("auth", JSON.stringify(res.data));
+      window.localStorage.setItem("token", JSON.stringify(res.data.token));
+      window.localStorage.setItem("user", JSON.stringify(res.data.user));
     } catch (err) {
       console.log(err);
       if (err.response.status === 400) toast.error(err.response.data);

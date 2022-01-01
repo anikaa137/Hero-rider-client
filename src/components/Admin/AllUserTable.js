@@ -22,14 +22,19 @@ const AllUserTable = ({
           </tr>
         </thead>
         <tbody>
-          {allUser.map((user, index) => (
+          {allUser.map((user) => (
             <tr key={user.id}>
-              {/* <td>{index + 1}</td> */}
-              <td>{user.name}</td>
-              <td>{user.age}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
-              <td>{user.role}</td>
+              {user.role === "admin" ? (
+                ""
+              ) : (
+                <>
+                  <td>{user.name}</td>
+                  <td>{user.age}</td>
+                  <td>{user.email}</td>
+                  <td>{user.phone}</td>
+                  <td>{user.role}</td>
+                </>
+              )}
             </tr>
           ))}
         </tbody>
